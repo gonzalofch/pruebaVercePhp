@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/estilosgenerales.css">
+    <link rel="stylesheet" href="../css/panelAdmin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../Controlador/js/funcionesControlador.js"></script>
+
+</head>
+
+<body>
+
+    <!--CABECERA CON CARRITO DE COMPRAS QUE AL DARLE CLICK TE SALGA UN MODAL MOSTRANDO TODOS LOS DATOS-->
+    <div class="container-fluid">
+        <div id="cabecera" class=" align-items-center">
+            <div id="menu">
+                <div id="">
+                    <div id="contenedorBotonMenuOpciones"><button id="botonMenuOpciones"><img src="../assets/menu.svg"
+                                alt="" srcset=""></button></div>
+                </div>
+            </div>
+            <div id="titulo" class="">
+                <h3 id="titulo-pagina" class="">Panel de Administración</h3>
+            </div>
+            <div id="funcionesCabecera">
+                <div id="iconoCarrito-container" class=" ">
+                    <div class="darkMode-container">
+                        <button class="darkMode-button" id="botonDarkMode">
+                            <img src="../img/iconos/darkModeSun.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="">
+                        <button class="" id="carritoCompras">
+                            <img src="../assets/market-purchase-svgrepo-com.svg" alt="" id="imagenCarritoCompras">
+                            <i class="bi bi-cart"></i>
+                            <div id="contador-carrito">0</div> <!-- Contador de artículos en el carrito -->
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIN DE CABECERA-->
+    <div class="contenido">
+        <div class="container" id="opcionesAdmin">
+            <!-- Opciones del panel de administración -->
+            <div class="row justify-content-center">
+                <div class="col-sm-4" id="realizarPedido">
+                    <div class="opcion">
+                        <img src="../img/iconos/carrito.png" alt="Realizar Pedido">
+                        <p>Realizar Pedido</p>
+                    </div>
+                </div>
+                <div class="col-sm-4" id="anadir">
+                    <div class="opcion">
+                        <img src="../img/iconos/gestionP.png" alt="Añadir Producto">
+                        <p>Gestionar Productos</p>
+                    </div>
+                </div>
+                <div class="col-sm-4" id="gestionarResiduos">
+                    <div class="opcion">
+                        <img src="../img/iconos/residuos.png" alt="Gestionar Residuos">
+                        <p>Gestionar Residuos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-4" id="gestionarUsuarios">
+                    <div class="opcion">
+                        <img src="../img/iconos/usuarios.png" alt="Gestionar Usuarios">
+                        <p>Gestionar Usuarios</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="opcion" id="revisarPedidos">
+                        <img src="../img/iconos/pedidos.png" alt="Revisar Pedidos">
+                        <p>Revisar Pedidos</p>
+                    </div>
+                </div>
+                <div class="col-sm-4" id="gestionarProveedores">
+                    <div class="opcion">
+                        <img src="../img/iconos/proveedores.png" alt="Gestionar Proveedores">
+                        <p>Gestionar Proveedores</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!----------------- MODAL GESTIONAR PRODUCTO -------------------------->
+        <div class="modal fade" id="modalGestionarProducto" tabindex="-1" role="dialog"
+            aria-labelledby="modalGestionarProductoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modalGestionarProductoLabel">Gestionar Productos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <button type="button" class="btn añadirProductosButton" id="abrirModal">Añadir
+                        Productos</button>
+
+                    <div class="modal-body" id="gestionarProductoBody">
+                        <div class="" id="cabecerasTabla">
+                            <div class=""><strong> Nombre del Producto</strong></div>
+                            <div class=""><strong>Categoría</strong></div>
+                            <div class=""><strong>Unidad de medida</strong></div>
+                            <div class=""><strong>Residuos</strong></div>
+                            <div class=""><strong>Editar</strong></div>
+                        </div>
+                        <div id="gestionPRO">
+
+                        </div>
+                        <div class="">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!----------------- MODAL DE MODIFICAR PRODUCTO --------------------------------------->
+
+        <div class="modal fade" id="editarProductoModal" tabindex="-1" role="dialog"
+            aria-labelledby="editarProductoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarProductoModalLabel">Editar Producto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formularioEditarProducto">
+                            <!-- ID del producto -->
+                            <input type="text" class="form-control" id="productoIDModificar" hidden>
+                            <!-- Nombre del Producto -->
+                            <div class="form-group">
+                                <label for="nombreProductoModificar">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="nombreProductoModificar">
+                            </div>
+                            <!-- Categoría del Producto -->
+                            <div class="form-group">
+                                <label for="categoriaProductoModificar">Categorías del Producto</label>
+                                <div id="categoriaProductoModificar"></div>
+                                <!-- <select class="form-control" id="categoriaProductoModificar"></select> -->
+                            </div>
+                            <!-- Unidad de medida -->
+                            <div class="form-group">
+                                <label for="unidadProductoModificar">Unidad de medida</label>
+                                <select class="form-control" id="unidadProductoModificar"></select>
+                            </div>
+                            <!-- Residuos -->
+                            <div class="form-group">
+                                <label for="residuosProductoModificar">Residuos</label>
+                                <div id="residuosProductoModificar">
+                                    <table class="table" id="tablaResiduos">
+                                        <thead>
+                                            <tr>
+                                                <th>Cantidad</th>
+                                                <th>Unidad</th>
+                                                <th>Tipo</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- <button type="button" class="btn btn-secondary" id="anadirResiduoAUnProducto">Añadir residuo</button> -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn botonNegro" id="guardarCambios2">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-----FIN------------ MODAL DE MODIFICAR PRODUCTO ------------------FIN--------------------->
+
+
+
+
+
+        <!---------------------------------------------- Modal AÑADIR PRODCUTO----------------------------------------->
+        <div class="modal fade" id="modalAgregarProducto" tabindex="-1" role="dialog"
+            aria-labelledby="modalAgregarProductoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAgregarProductoLabel">Agregar Producto</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="nombreProducto">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="nombreProducto">
+                            </div>
+                            <div class="form-group">
+                                <label for="categoriaProducto">Categoría del Producto</label>
+                                <div class="input-group">
+                                    <select class="custom-select" id="categoriaProducto">
+                                        <option value="">Seleccione una categoría...</option>
+                                        <!-- Aquí se cargarán las opciones de categoría -->
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button id="crearCategoria" class="btn btnEditar" type="button">Nueva
+                                            Categoría</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="unidadMedida">Unidad de medida del Producto</label>
+                                <div class="input-group">
+                                    <select class="custom-select" id="unidadMedida">
+                                        <option value="">Seleccione una unidad...</option>
+                                        <!-- Aquí se cargarán las opciones de unidad de medida -->
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button id="crearUnidad" data-toggle="modal" data-target="modalAnadirUnidad"
+                                            class="btn btnEditar type=" button"> Nueva Unidad </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="contenedorResiduos">
+                                <label for="residuos">Residuos del Producto</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control input-sm claseResiduos" id="residuos"
+                                        placeholder="Residuos  1" style="max-width: 100px;" min="0">
+                                    <label for="kilos">Kg</label>
+                                    <select id="despegableResiduos" class="form-control despegablesResiduos">
+                                    </select>
+
+                                </div>
+                            </div>
+                            <button id="agregarResiduo" type="button" class="btn rounded-circle">
+                                <img src="../../Vista/img/iconos/masp.png" alt="Agregar residuo">
+                            </button>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="cerrarProducto"
+                            data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn botonNegro" id="anadirProducto">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------------------- Modal AÑADIR PRODCUTO-------FIN---------------------------------->
+        <!-- Modal Gestionar Usuarios -->
+        <div class="modal fade" id="modalGestionarUsuarios" tabindex="-1" role="dialog"
+            aria-labelledby="modalGestionarUsuariosLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalGestionarUsuariosLabel">Gestionar Usuarios</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class=" table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Admin</th>
+                                    <th>Activo</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaUsuarios">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnanadirUsuario" class="btn botonNegro">Añadir Usuario</button>
+                        <button type="button" class="btn btn-danger" id="btncerrarUsuario"
+                            data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Modal Gestionar Usuarios -->
+
+        <!-- Nuevo Modal "Cambiar Contraseña" -->
+        <div class="modal fade" id="modalCambiarContrasena" tabindex="-1" role="dialog"
+            aria-labelledby="modalCambiarContrasenaLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCambiarContrasenaLabel">Cambiar Contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formCambiarContrasena">
+                            <div class="form-group">
+                                <label for="nuevaContrasena">Nueva Contraseña</label>
+                                <input type="password" class="form-control" id="nuevaContrasena" name="nuevaContrasena">
+                            </div>
+                            <div class="form-group">
+                                <label for="repetirNuevaContrasena">Repetir Nueva Contraseña</label>
+                                <input type="password" class="form-control" id="repetirNuevaContrasena"
+                                    name="repetirNuevaContrasena">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn botonNegro" id="guardarPass">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin del Nuevo Modal "Cambiar Contraseña" -->
+
+
+        <!-- Nuevo Modal "Editar" -->
+        <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditar">Editar Usuario </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditar">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombreEditar" name="nombreEditar">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="emailEditar" name="emailEditar">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" class="form-control" id="telefonoEditar" name="telefono">
+                            </div>
+                            <div class="form-group">
+                                <label for="admin">Admin</label>
+                                <select class="form-control" id="adminEditar" name="admin">
+                                    <option id="primero" value="si"></option>
+                                    <option id="segundo" value="no"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="activo">Activo</label>
+                                <select class="form-control" id="activoEditar" name="activo">
+                                    <option value="si">Sí</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn botonNegro" id="guardarCambios">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin del Nuevo Modal "Editar" -->
+
+
+
+        <!-- Nuevo Modal "Añadir Usuario"  -->
+        <div class="modal fade" id="modalAgregarUsuario" tabindex="-1" role="dialog"
+            aria-labelledby="modalAgregarUsuario" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAgregarUsuario">Añadir Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAgregarUsuario" class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="nombreAgregar" class="col-sm-2 col-form-label">Nombre</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nombreAgregar" name="nombreAgregar">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="emailAgregar" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="emailAgregar" name="emailAgregar">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="telefonoAgregar" class="col-sm-2 col-form-label">Teléfono</label>
+                                <div class="col-sm-10">
+                                    <input type="tel" class="form-control" id="telefonoAgregar" name="telefonoAgregar">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="passwordAgregar" class="col-sm-2 col-form-label">Contraseña</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="passwordAgregar"
+                                        name="passwordAgregar">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="adminAgregar" class="col-sm-2 col-form-label">Admin</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="adminAgregar" name="adminAgregar">
+                                        <option value="si">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="activoAgregar" class="col-sm-2 col-form-label">Activo</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="activoAgregar" name="activoAgregar">
+                                        <option value="si">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn botonNegro" id="guardarUsuario">Añadir Usuario</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin del Nuevo Modal "Añadir Usuario"  -->
+
+
+        <!-- MODAL AÑADIR CATEGORIA NUEVA -->
+        <div class="modal fade" id="modalAnadirCategoria" tabindex="-1" role="dialog"
+            aria-labelledby="modalAnadirCategoriaLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAnadirCategoriaLabel">Añadir Categoria</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAnadirCategoria">
+                            <div class="form-group">
+                                <label for="nuevaContrasena">Nueva Categoria</label>
+                                <input type="text" class="form-control" id="nuevaCategoria" name="nuevaCategoria">
+                            </div>
+                            <div class="form-group">
+                                <label for="repetirNuevaContrasena">Observaciones</label>
+                                <input type="text" class="form-control" id="observacionCategoria"
+                                    name="observacionCategoria">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn botonNegro" id="anadirCategoriaGuardar">Guardar
+                            Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL AÑADIR CATEGORIA NUEVA  FIN-->
+
+        <!-- MODAL AÑADIR UNIDAD MEDIDA NUEVA -->
+        <div class="modal fade" id="modalAnadirUnidad" tabindex="-1" role="dialog"
+            aria-labelledby="modalAnadirUnidadLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAnadirUnidadLabel">Añadir Unidad</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAnadirUnidad">
+                            <div class="form-group">
+                                <label for="nuevaContrasena">Nueva Unidad</label>
+                                <input type="text" class="form-control" id="nuevaUnidad" name="nuevaUnidad">
+                            </div>
+                            <div class="form-group">
+                                <label for="repetirNuevaContrasena">Observaciones</label>
+                                <input type="text" class="form-control" id="observacionesUnidad"
+                                    name="observacionesUnidad">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn botonNegro" id="anadirUnidadGuardar">Guardar
+                            Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL AÑADIR UNIDAD MEDIDA NUEVA  FIN-->
+    </div>
+
+
+    <!-- MODAL AÑADIR RESIDUO NUEVO A UN PRODUCTO -->
+
+    <div class="modal fade" id="modalanadirResiduoAProducto" tabindex="-1" role="dialog"
+        aria-labelledby="modalanadirResiduoAProductoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalanadirResiduoAProductoLabel">Nuevo Residuo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formanadirResiduoAProducto">
+                        <div class="form-group">
+                            <label for="nuevoResiduo">Nuevo Residuo</label>
+                            <select class="form-control despegablesResiduosModi" id="nuevoResiduo" name="nuevoResiduo">
+                                <option value="">Selecciona un residuo...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidadResiduo">Cantidad del residuo</label>
+                            <input type="number" class="form-control" id="cantidadResiduo" name="cantidadResiduo"
+                                min="0">
+                        </div>
+                        <input type="hidden" id="idProductoModal" name="idProductoModal">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn botonNegro" id="guardarAnadirResiduoAProducto">Guardar
+                        Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="desplegableFunciones" class="container">
+    </div>
+    <!-- MODAL AÑADIR RESIDUO NUEVO A UN PRODUCTO  FIN-->
+
+
+    <!-- MODAL pRODUCTO ASOCIADO A PEDIDO TRAMITADO, NO SE PUEDE MODIFICAR -->
+    <div class="modal fade" id="noSePuedeModificar" tabindex="-1" role="dialog"
+        aria-labelledby="noSePuedeModificarLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aviso</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1>NO SE PUEDE MODIFICAR</h1>
+                    <h2>El producto está asociado a un pedido anterior.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL pRODUCTO ASOCIADO A PEDIDO TRAMITADO, NO SE PUEDE MODIFICAR FIN-->
+    <div id="menuOpciones">
+        <div id="datosUsuario" class=" ">
+            <div id="desplegablellamar" class=" align-items-center">
+                <img src="../img/iconos/iconoUsuario.png" id="iconoUsuario" alt="IMAGEN DEL ICONO DE USUARIO">
+                <h3 id="usuarioNombre"></h3>
+            </div>
+        </div>
+        <div class="contenedorMenuOpciones"></div>
+    </div>
+
+    <div id="overlayGeneral"></div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script personalizado para el panel de administración -->
+    <script src="../js/funcionesVisualesGenerales.js"></script>
+    <script src="../js/adminPanel.js"></script>
+</body>
+
+</html>

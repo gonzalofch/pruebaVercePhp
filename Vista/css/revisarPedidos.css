@@ -1,0 +1,223 @@
+@import url(variables.css);
+
+/* Estilos para el encabezado */
+body {
+    font-family: "Open Sans";
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Estilos para la lista de pedidos */
+#lista-pedidos {
+    margin-top: 20px;
+}
+
+/* Estilos para las tarjetas de pedidos */
+.card {
+    margin-bottom: 20px;
+}
+
+/* Estilos para los botones de modificar pedido */
+.btn-modificar {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* Estilos para el botón de validar pedidos */
+#btnValidarPedidos {
+    font-weight: bold;
+    /* Texto en negrita */
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 200px;
+}
+
+#btnRealizarPedidos {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 200px;
+}
+
+#contenedorBotones {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pedido-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-secondary-hover);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.pedido-container>div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+    .pedido-container>div {
+        flex-direction: column;
+    }
+}
+
+
+#contenedorTablaProveedores {
+    width: 100%;
+}
+
+#añadirProductosButton {
+    height: 100px;
+}
+
+#infoProveedores {
+    width: 100%;
+}
+
+/*MODAL EDITAR PROVEEDOR*/
+.modal-content {
+    border-radius: 10px;
+}
+
+/* Estilo del encabezado del modal */
+.modal-header {
+    background-color: var(--color-bg-blue);
+    color: var(--color-bg-alt);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Estilo del título del modal */
+.modal-title {
+    font-weight: bold;
+}
+
+/* Estilo del cuerpo del modal */
+.modal-body {
+    padding: 20px;
+}
+
+/* Estilo del pie del modal */
+.modal-footer {
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Estilo para los botones del pie del modal */
+.modal-footer button {
+    margin-left: 10px;
+}
+
+/* Estilo para el botón Cancelar */
+.btn-danger {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* Estilo para el botón Guardar Cambios */
+.btn-primary {
+    background-color: var(--color-bg-blue);
+    border-color: var(--color-bg-blue);
+}
+
+/*FIN MODAL EDITAR PROVEEDOR*/
+.card {}
+
+.card-header {
+    background-color: var(--color-border);
+    color: var(--color-bg-alt);
+    font-size: large;
+}
+
+.table {
+    width: 100%;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid var(--color-bg);
+}
+
+.table th {
+    border-bottom: 2px solid var(--color-bg);
+    background-color: var(--color-bg);
+}
+
+.botonEditar {
+    margin-left: 10px;
+}
+
+.form-check-input {
+    margin: 0;
+}
+
+tbody tr {
+    transition: transform 0.3s ease;
+    background-color: var(--color-bg-alt);
+    padding: 10px;
+}
+
+tbody tr:hover {
+    transform: scale(1.0);
+    box-shadow: 0 4px 8px var(--color-border);
+
+}
+
+.checkboxEstilizado {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+/* Estilo para el input del checkbox oculto */
+.checkboxEstilizado input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border-alt);
+    border-radius: 4px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 5px;
+    width: 8px;
+    height: 12px;
+    border: solid var(--color-bg-alt);
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+}
+
+.mensaje-error {
+    color: var(--color-accent);
+}

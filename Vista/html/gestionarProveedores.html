@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisar Pedidos - Panel de Administración</title>
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/estilosgenerales.css">
+    <link rel="stylesheet" href="../css/gestionarProveedores.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!--CABECERA CON CARRITO DE COMPRAS QUE AL DARLE CLICK TE SALGA UN MODAL MOSTRANDO TODOS LOS DATOS-->
+    <div class="container-fluid">
+        <div id="cabecera" class=" align-items-center">
+            <div id="menu">
+                <div id="">
+                    <div id="contenedorBotonMenuOpciones"><button id="botonMenuOpciones"><img src="../assets/menu.svg"
+                                alt="" srcset=""></button></div>
+                </div>
+            </div>
+            <div id="titulo" class="">
+                <h3 id="titulo-pagina" class="">Panel de Administración</h3>
+            </div>
+            <div id="funcionesCabecera">
+                <div id="iconoCarrito-container" class=" ">
+                    <div class="darkMode-container">
+                        <button class="darkMode-button" id="botonDarkMode">
+                            <img src="../img/iconos/darkModeSun.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="">
+                        <button class="" id="carritoCompras">
+                            <img src="../assets/market-purchase-svgrepo-com.svg" alt="" id="imagenCarritoCompras">
+                            <i class="bi bi-cart"></i>
+                            <div id="contador-carrito">0</div> <!-- Contador de artículos en el carrito -->
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--FIN DE CABECERA-->
+    <div class="container mt-5" id="gestionarProveedores">
+        <h1 class="mb-4">Gestión de Proveedores</h1>
+
+        <!-- Lista de proveedores existentes -->
+        <div class="card">
+            <div class="card-header">
+                Proveedores Existentes
+            </div>
+            <div class="d-flex justify-content-between align-items-center" id="contenedorTablaProveedores">
+                <div id="infoProveedores"></div>
+            </div>
+
+        </div>
+
+        <!-- Modal para editar proveedor -->
+        <div class="modal fade" id="editarProveedorModal" tabindex="-1" role="dialog"
+            aria-labelledby="editarProveedorModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarProveedorModalLabel">Editar Proveedor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="descripcion">Nombre</label>
+                                <input type="text" class="form-control" id="descripcion">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" class="form-control" id="telefono">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="direccion">Dirección</label>
+                                <input type="text" class="form-control" id="direccion">
+                            </div>
+                            <div class="form-group">
+                                <label for="observaciones">Observaciones</label>
+                                <textarea class="form-control" id="observaciones" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cerrarModal" class="btn btn-danger"
+                            data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="cambioProveedor" class="btn botonNegro" data-toggle="modal"
+                            data-target="#confirmacionModal">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Botón para abrir el modal -->
+        <button type="button" class="btn botonNegro mt-4" data-toggle="modal" data-target="#agregarProveedorModal">
+            Añadir Proveedor
+        </button>
+    </div>
+    <!-- Modal para añadir nuevo proveedor -->
+    <div class="modal fade" id="agregarProveedorModal" tabindex="-1" role="dialog"
+        aria-labelledby="agregarProveedorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarProveedorModalLabel">Añadir Nuevo Proveedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="descripcion">Nombre</label>
+                            <input type="text" class="form-control" id="addDescripcion">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" class="form-control" id="addTelefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="addEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" class="form-control" id="addDireccion">
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones</label>
+                            <textarea class="form-control" id="addObservaciones" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancelarAddProveedor" class="btn btn-danger"
+                        data-dismiss="modal">Cancelar</button>
+                    <button type="button" id="addProveedor" class="btn botonNegro" data-toggle="modal"
+                        data-target="#confirmacionModal">Agregar Proveedor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="confirmacionModal" tabindex="-1" role="dialog" aria-labelledby="confirmacionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacionModalLabel">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de realizar esta acción?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    <!-- Este botón ejecutará una acción que debes definir en tu código JavaScript -->
+                    <button type="button" class="btn botonNegro" id="confirmarAccion">Sí</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="menuOpciones">
+        <div id="datosUsuario" class=" ">
+            <div id="desplegablellamar" class=" align-items-center">
+                <img src="../img/iconos/iconoUsuario.png" id="iconoUsuario" alt="IMAGEN DEL ICONO DE USUARIO">
+                <h3 id="usuarioNombre"></h3>
+            </div>
+        </div>
+        <div class="contenedorMenuOpciones"></div>
+    </div>
+
+    <div id="overlayGeneral"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap JS (opcional, si necesitas funcionalidades como el despliegue del menú en móviles) -->
+    <script src="../../Controlador/js/funcionesControlador.js"></script>
+    <script src="../js/funcionesVisualesGenerales.js"></script>
+    <script src="../js/gestionarProveedores.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+/*ESTILOS GENERALES PARA TODAS LAS PAGINAS*/
+body {
+  filter: invert(100%);
+  background-color: #333;
+  width: 100vw;
+}
+
+
+
+/*REINVERTIR PARA ELIMINAR EFECTO SI SE QUIERE*/
+.modal {
+  filter: invert(100%);
+}
+
+#contenedor-popUpConfirmacion {}
+
+.btn-danger {
+  filter: invert(100%);
+  background-color: hsl(351, 69%, 37%);
+}
+
+.modal-content .btn-danger {
+  filter: invert(100%);
+  background-color: hsl(351, 69%, 37%);
+}
+
+.btn-primary {
+  background-color: grey;
+}
+
+#administrar {
+  filter: invert(100%);
+  border: 1px #4e4e4e solid;
+  background-color: #333;
+}
+
+#iconobusqueda {
+  border: 2px solid #a1a1a1;
+  background-color: rgb(253, 253, 253);
+}
+
+
+#popUpEmergente-imagen {
+  filter: invert(100%);
+}
+
+/* ESTILO DE CARTA DE PRODUCTO NUEVO EN PEDIDOS.HTML*/
+#productonodefinida input {
+  border: 1px #14141480 solid;
+  margin-bottom: 10px;
+}
+
+#modalGestionarProducto .modal-content {
+  background: #333;
+  color: white;
+}
+
+/*MODAL GESTIONAR USUARIOS*/
+#modalGestionarUsuarios .modal-content {
+  background: #222222;
+  color: white
+}
+
+#modalGestionarUsuarios .modal-content h5 {
+  color: white;
+}
+
+#modalGestionarUsuarios .table {
+  background-color: white;
+}
+
+/*FIN MODAL GESTIONAR USUARIOS*/
+/*MODAL GESTIONAR PRODUCTOS*/
+.close {
+  filter: invert(100%);
+}
+
+#cabecerasTabla {
+  color: #fff;
+}
+
+#modalGestionarProducto h3 {
+  color: #fff;
+}
+
+#abrirModal {
+  background-color: #ffffff;
+  color: #000;
+  border: 2px solid rgb(27, 27, 27);
+  border-radius: 0px;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 20px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #ffffff;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+.show {}
+
+#abrirModal:hover {
+  box-shadow: inset 0 0 0 50px #000000;
+  color: rgb(255, 255, 255);
+}
+
+#editarProductoModal .modal-content {
+  background: #333;
+  color: white;
+}
+
+#editarProductoModal .modal-content th {
+  background: #333;
+  color: white;
+}
+
+/*MODAL AGREGAR PRODUCTO*/
+#modalAgregarProducto .modal-content {
+  background: #333;
+}
+
+
+#modalAgregarProducto img {
+  filter: invert(100%);
+}
+
+#modalAgregarProducto .modal-content input {
+  outline: none;
+  background: rgba(154, 154, 154, 0.2);
+  border: none;
+  border-radius: 0;
+  color: white;
+}
+
+#modalAgregarProducto .modal-content select {
+  outline: none;
+  background: rgba(154, 154, 154, 0.2);
+  border: none;
+  border-radius: 0;
+  color: white;
+}
+
+#modalAgregarProducto .form-group #categoriaProducto option {
+  background: rgba(154, 154, 154, 0.2);
+  color: white;
+}
+
+/*FINAL MODAL AGREGAR PRODUCTO*/
+/*MODAL EDITAR PRODUCTO */
+#editarProductoModal .modal-content {
+  box-shadow: 0 8px 12px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+#gestionarProveedores .modal-header {
+  color: #000000;
+  /* Corgb(255, 255, 255) texto */
+  border-bottom: none;
+  /* Elimina el borde inferior */
+  border-radius: 10px 10px 0 0;
+  /* Ajusta la esquina superior */
+}
+
+#gestionarProveedores input,
+#gestionarProveedores textarea {
+  color: #fff;
+  /* Corgb(255, 255, 255) texto */
+  background: #000;
+  border: 0;
+}
+
+#gestionarProveedores #cerrarModal {
+  filter: invert(100%);
+  background-color: red !important;
+}
+
+.modal-header .modal-title {}
+
+.card-header {
+  filter: invert(100%);
+  background: #696969;
+}
+
+.botonNegro {
+  filter: invert(100%);
+  background: #595959;
+  border: 1px black solid;
+}
+
+#editarProductoModal .modal-content input {
+  outline: none;
+  background: rgba(154, 154, 154, 0.2);
+  border: none;
+  border-radius: 0;
+  color: white;
+}
+
+#editarProductoModal .modal-content select {
+  outline: none;
+  background: rgba(154, 154, 154, 0.2);
+  border: none;
+  border-radius: 0;
+  color: white;
+}
+
+#editarProductoModal .modal-content option {
+  background-color: #333;
+  /* Color de fondo de las opciones */
+  color: #f5f5f5;
+  /* Color del texto de las opciones */
+}
+
+.filaProducto {
+  background-color: #000;
+  color: #fff;
+}
+
+.filaProducto:hover {
+  background-color: #000000;
+  box-shadow: 0 8px 12px rgba(255, 255, 255, 0.5);
+
+}
+
+.filaProducto button {
+  background-color: #a1a1a1;
+}
+
+.filaProducto button:active {
+  background-color: #686868;
+}
+
+/*FIN MODAL GESTIONAR PRODUCTOS*/
+
+button:active {
+  transform: scale(0.95);
+  /* Reduce ligeramente el tamaño al hacer clic */
+}
+
+.modal-content {
+  background: #333;
+  color: white;
+}
+
+#mes,
+#anio {
+  filter: invert(100%);
+  background: #000000;
+  color: #fff;
+}
+
+#mes option,
+#anio option {
+  font-size: large;
+  background: #000;
+}
+.modal-header .modal-title,h5 {
+  color: #fff;
+}
